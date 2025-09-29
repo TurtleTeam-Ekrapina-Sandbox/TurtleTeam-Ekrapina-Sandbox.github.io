@@ -5,111 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Скачать APK | SSB:RR</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
-
-    h1 {
-      text-align: center;
-      padding: 20px;
-      background-color: DodgerBlue;
-      color: white;
-      margin: 0;
-    }
-
-    table {
-      width: 90%;
-      margin: 20px auto;
-      border-collapse: collapse;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 12px;
-      text-align: center;
-    }
-
-    th {
-      background-color: #222;
-      color: white;
-    }
-
-    tr:hover {
-      background-color: #f1f1f1;
-    }
-
-    .android-icon {
-      width: 32px;
-      height: 32px;
-    }
-
-    .download-btn {
-      display: inline-block;
-      padding: 8px 16px;
-      background-color: DodgerBlue;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-
-    .download-btn:hover {
-      background-color: RoyalBlue;
-    }
+    body { font-family: Arial; background: #f4f4f4; margin:0; padding:0;}
+    h1 { text-align:center; padding:20px; background:DodgerBlue; color:white; margin:0;}
+    table { width:90%; margin:20px auto; border-collapse: collapse; background:white; box-shadow:0 0 10px rgba(0,0,0,0.1);}
+    th, td { border:1px solid #ddd; padding:12px; text-align:center;}
+    th { background:#222; color:white;}
+    tr:hover { background:#f1f1f1;}
+    .android-icon { width:32px; height:32px;}
+    .download-btn { padding:8px 16px; background:DodgerBlue; color:white; text-decoration:none; border-radius:5px;}
+    .download-btn:hover { background:RoyalBlue;}
   </style>
 </head>
 <body>
 
-  <h1>Скачать APK — Simple Sandbox: Reborn Reloaded</h1>
+<h1>Скачать APK — Simple Sandbox: Reborn Reloaded</h1>
+<table>
+  <tr>
+    <th>Версия</th>
+    <th>Дата загрузки</th>
+    <th>Платформа</th>
+    <th>Скачать</th>
+  </tr>
+  <tbody id="apk-list"></tbody>
+</table>
 
-  <table>
-    <tr>
-      <th>Версия</th>
-      <th>Дата загрузки</th>
-      <th>Платформа</th>
-      <th>Скачать</th>
-    </tr>
+<script>
+  const repoOwner = 'TurtleTeamSSBRR.github.io'; // заменить на свой
+  const repoName = 'TurtleTeamSSBRR.github.io';  // заменить на свой
+  const folderPath = 'apk';         // папка с APK
 
-    <tr>
-      <td>SSB_RR_test_v0.1.0.0_arm64</td>
-      <td>29 сентября 2025</td>
-      <td><img src="images/android.png" alt="Android" class="android-icon"></td>
-      <td><a href="apk/SSB_RR_test_v0.1.0.0_arm64.apk" class="download-btn">Скачать</a></td>
-    </tr>
+  async function fetchAPKFiles() {
+    const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`;
+    const response = await fetch(apiURL);
+    const files = await response.json();
 
-    <tr>
-      <td>SSB_RR_test_v0.1.0.0_arm32</td>
-      <td>29 сентября 2025</td>
-      <td><img src="images/android.png" alt="Android" class="android-icon"></td>
-      <td><a href="apk/SSB_RR_test_v0.1.0.0_arm32.apk" class="download-btn">Скачать</a></td>
-    </tr>
+    const tbody = document.getElementById('apk-list');
 
-    <tr>
-      <td>SSB_RR_test_v0.0.2.1_arm64</td>
-      <td>29 сентября 2025</td>
-      <td><img src="images/android.png" alt="Android" class="android-icon"></td>
-      <td><a href="apk/SSB_RR_test_v0.0.2.1_arm64.apk" class="download-btn">Скачать</a></td>
-    </tr>
+    files.forEach(file => {
+      if(file.name.endsWith('.apk')) {
+        const date = new Date(file.git_url ? file.git_url : Date.now()).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${file.name.replace('.apk','')}</td>
+          <td>${date}</td>
+          <td><img src="images/android.png" alt="Android" class="android-icon"></td>
+          <td><a href="${file.download_url}" class="download-btn">Скачать</a></td>
+        `;
+        tbody.appendChild(tr);
+      }
+    });
+  }
 
-    <tr>
-      <td>SSB_RR_test_v0.0.2.1_arm32</td>
-      <td>29 сентября 2025</td>
-      <td><img src="images/android.png" alt="Android" class="android-icon"></td>
-      <td><a href="apk/SSB_RR_test_v0.0.2.1_arm32.apk" class="download-btn">Скачать</a></td>
-    </tr>
-
-    <tr>
-      <td>Simple Sandbox Reborn Reloaded.arm64-v8a</td>
-      <td>29 сентября 2025</td>
-      <td><img src="images/android.png" alt="Android" class="android-icon"></td>
-      <td><a href="apk/Simple Sandbox Reborn Reloaded.arm64-v8a" class="download-btn">Скачать</a></td>
-    </tr>
-  </table>
+  fetchAPKFiles();
+</script>
 
 </body>
 </html>
