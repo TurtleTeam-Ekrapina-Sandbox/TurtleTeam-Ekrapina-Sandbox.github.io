@@ -22,7 +22,7 @@
 <table>
   <tr>
     <th>Версия</th>
-    <th>Дата загрузки</th>
+    <th>Дата релиза</th>
     <th>Платформа</th>
     <th>Скачать</th>
   </tr>
@@ -35,28 +35,41 @@
 
   async function fetchReleases() {
     const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/releases`;
-    const response = await fetch(apiURL);
-    const releases = await response.json();
+    try {
+      const response = await fetch(apiURL);
+      if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
+      const releases = await response.json();
 
-    const tbody = document.getElementById("apk-list");
+      const tbody = document.getElementById("apk-list");
+      tbody.innerHTML = "";
 
-    releases.forEach(release => {
-      release.assets.forEach(asset => {
-        if (asset.name.endsWith(".apk")) {
-          const date = new Date(release.published_at)
-            .toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" });
-
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${release.tag_name}</td>
-            <td>${date}</td>
-            <td><img src="images/android.png" alt="Android" class="android-icon"></td>
-            <td><a href="${asset.browser_download_url}" class="download-btn">Скачать</a></td>
-          `;
-          tbody.appendChild(tr);
-        }
+      releases.forEach(release => {
+        release.assets.forEach(asset => {
+          if (asset.name.endsWith(".apk")) {
+            const date = new Date(release.published_at).toLocaleDateString("ru-RU", { 
+              day: "numeric", month: "long", year: "numeric" 
+            });
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${release.name || release.tag_name}</td>
+              <td>${date}</td>
+              <td><img src="images/android.png" alt="Android" class="android-icon"></td>
+              <td><a href="${asset.browser_download_url}" class="download-btn">Скачать</a></td>
+            `;
+            tbody.appendChild(tr);
+          }
+        });
       });
-    });
+
+      if (tbody.innerHTML === "") {
+        tbody.innerHTML = `<tr><td colspan="4">APK файлов не найдено</td></tr>`;
+      }
+
+    } catch (error) {
+      document.getElementById("apk-list").innerHTML = `
+        <tr><td colspan="4">Ошибка загрузки: ${error.message}</td></tr>
+      `;
+    }
   }
 
   fetchReleases();
