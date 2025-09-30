@@ -27,7 +27,7 @@
 <table>
   <tr>
     <th>Версия</th>
-    <th>Дата релиза</th>
+    <th>Дата загрузки</th>
     <th>Платформа</th>
     <th>Скачать</th>
   </tr>
@@ -51,7 +51,8 @@
       releases.forEach(release => {
         release.assets.forEach(asset => {
           if (asset.name.endsWith(".apk")) {
-            const date = new Date(release.published_at).toLocaleDateString("ru-RU", { 
+            // Дата берётся именно из времени обновления APK
+            const date = new Date(asset.updated_at).toLocaleDateString("ru-RU", { 
               day: "numeric", month: "long", year: "numeric" 
             });
             const tr = document.createElement("tr");
