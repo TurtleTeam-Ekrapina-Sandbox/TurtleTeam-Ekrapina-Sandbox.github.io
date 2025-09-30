@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Скачать APK | SSB:RR</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin:0; padding:0;}
+    body { font-family: Arial; background: #f4f4f4; margin:0; padding:0;}
     h1 { text-align:center; padding:20px; background:DodgerBlue; color:white; margin:0;}
     table { width:90%; margin:20px auto; border-collapse: collapse; background:white; box-shadow:0 0 10px rgba(0,0,0,0.1);}
     th, td { border:1px solid #ddd; padding:12px; text-align:center;}
@@ -22,7 +22,7 @@
 <table>
   <tr>
     <th>Версия</th>
-    <th>Дата релиза</th>
+    <th>Дата загрузки</th>
     <th>Платформа</th>
     <th>Скачать</th>
   </tr>
@@ -30,46 +30,37 @@
 </table>
 
 <script>
-  const repoOwner = 'TurtleTeamSSBRR'; // <= сюда ставь свой GitHub username/org
-  const repoName = 'turtleteamssbrr.github.io/download';            // <= сюда ставь название репозитория
+  const repoOwner = "TurtleTeamSSBRR";
+  const repoName = "TurtleTeamSSBRR.github.io";
 
-  async function fetchAPKReleases() {
-    try {
-      const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/releases`;
-      const response = await fetch(apiURL);
-      if (!response.ok) throw new Error("GitHub API error: " + response.status);
-      const releases = await response.json();
+  async function fetchReleases() {
+    const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/releases`;
+    const response = await fetch(apiURL);
+    const releases = await response.json();
 
-      const tbody = document.getElementById('apk-list');
+    const tbody = document.getElementById("apk-list");
 
-      releases.forEach(release => {
-        release.assets.forEach(asset => {
-          if (asset.name.endsWith('.apk')) {
-            const date = new Date(release.published_at).toLocaleDateString('ru-RU', { 
-              day: 'numeric', month: 'long', year: 'numeric' 
-            });
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-              <td>${release.tag_name || asset.name}</td>
-              <td>${date}</td>
-              <td><img src="images/android.png" alt="Android" class="android-icon"></td>
-              <td><a href="${asset.browser_download_url}" class="download-btn" target="_blank">Скачать</a></td>
-            `;
-            tbody.appendChild(tr);
-          }
-        });
+    releases.forEach(release => {
+      release.assets.forEach(asset => {
+        if (asset.name.endsWith(".apk")) {
+          const date = new Date(release.published_at)
+            .toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" });
+
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${release.tag_name}</td>
+            <td>${date}</td>
+            <td><img src="images/android.png" alt="Android" class="android-icon"></td>
+            <td><a href="${asset.browser_download_url}" class="download-btn">Скачать</a></td>
+          `;
+          tbody.appendChild(tr);
+        }
       });
-    } catch (err) {
-      console.error(err);
-      document.getElementById('apk-list').innerHTML = 
-        `<tr><td colspan="4">Ошибка загрузки: ${err.message}</td></tr>`;
-    }
+    });
   }
 
-  fetchAPKReleases();
+  fetchReleases();
 </script>
 
 </body>
 </html>
-
-
