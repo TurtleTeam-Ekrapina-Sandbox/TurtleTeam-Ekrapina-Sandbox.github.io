@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SSB:RR | Turtle Team</title>
   <style>
-    body, html { margin: 0; padding: 0; }
+    body, html { margin: 0; padding: 0; font-family: Arial, sans-serif; }
     .hero {
       background-color: DodgerBlue;
       color: white;
@@ -14,20 +14,20 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      padding: 10px;
     }
-    h1 { font-size: 2.5em; margin: 0; }
-    .buttons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
-    .buttons img { width: 150px; cursor: pointer; }
+    h1 { font-size: 2em; margin: 0; }
+    .buttons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .buttons img { width: 150px; max-width: 45vw; cursor: pointer; }
     .content { padding: 20px; max-width: 800px; margin: 0 auto; text-align: center; }
-    img { display: block; margin: 0 auto; }
+    img { display: block; margin: 0 auto; max-width: 100%; height: auto; }
     .telegram-link {
       margin-top: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
-      font-family: Arial, sans-serif;
-      font-size: 20px;
+      font-size: 18px;
       font-style: italic;
       font-weight: bold;
       color: white;
@@ -41,6 +41,12 @@
     .telegram-link img { width: 40px; height: 40px; }
     .telegram-link a { text-decoration: none; color: white; }
     .telegram-link a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5em; }
+      .buttons img { width: 120px; }
+      .telegram-link { font-size: 16px; padding: 8px 16px; }
+    }
   </style>
 </head>
 <body>
@@ -51,7 +57,7 @@
 
   <div class="content">
     <figure>
-      <img width="400" src="images/ssbrricon.png" alt="Логотип SSB:RR">
+      <img src="images/ssbrricon.png" alt="Логотип SSB:RR">
       <figcaption>Загрузить APK файл, и больше о Turtle Team.</figcaption>
     </figure>
 
@@ -77,4 +83,3 @@
 
 </body>
 </html>
-
