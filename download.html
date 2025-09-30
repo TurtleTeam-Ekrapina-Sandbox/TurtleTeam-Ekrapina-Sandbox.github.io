@@ -7,17 +7,35 @@
   <style>
     body { font-family: Arial; background: #f4f4f4; margin:0; padding:0;}
     h1 { text-align:center; padding:20px; background:DodgerBlue; color:white; margin:0;}
-    table { width:95%; margin:20px auto; border-collapse: collapse; background:white; box-shadow:0 0 10px rgba(0,0,0,0.1);}
+
+    table {
+      width:95%;
+      margin:20px auto;
+      border-collapse: collapse;
+      background:white;
+      box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
     th, td { border:1px solid #ddd; padding:12px; text-align:center;}
     th { background:#222; color:white;}
     tr:hover { background:#f1f1f1;}
     .android-icon { width:32px; height:32px;}
     .download-btn { padding:8px 16px; background:DodgerBlue; color:white; text-decoration:none; border-radius:5px;}
     .download-btn:hover { background:RoyalBlue;}
+
+    /* Адаптив для мобильных */
     @media (max-width: 600px) {
-      th, td { padding:8px; font-size:14px; }
-      .download-btn { padding:6px 12px; font-size:14px; }
-      .android-icon { width:24px; height:24px; }
+      table, thead, tbody, th, td, tr { display: block; width: 100%; }
+      thead { display: none; }
+      tr { margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px; padding: 10px; background: #fff; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+      td { border: none; padding: 6px 10px; text-align: left; position: relative; }
+      td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 100px;
+      }
+      .android-icon { width:24px; height:24px; vertical-align: middle; }
+      .download-btn { display: inline-block; width: 100%; text-align:center; margin-top:5px; padding:8px; }
     }
   </style>
 </head>
@@ -25,12 +43,14 @@
 
 <h1>Скачать APK — Simple Sandbox: Reborn Reloaded</h1>
 <table>
-  <tr>
-    <th>Версия</th>
-    <th>Дата загрузки</th>
-    <th>Платформа</th>
-    <th>Скачать</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>Версия</th>
+      <th>Дата загрузки</th>
+      <th>Платформа</th>
+      <th>Скачать</th>
+    </tr>
+  </thead>
   <tbody id="apk-list"></tbody>
 </table>
 
@@ -51,16 +71,15 @@
       releases.forEach(release => {
         release.assets.forEach(asset => {
           if (asset.name.endsWith(".apk")) {
-            // Дата берётся именно из времени обновления APK
             const date = new Date(asset.updated_at).toLocaleDateString("ru-RU", { 
               day: "numeric", month: "long", year: "numeric" 
             });
             const tr = document.createElement("tr");
             tr.innerHTML = `
-              <td>${asset.name}</td>
-              <td>${date}</td>
-              <td><img src="images/android.png" alt="Android" class="android-icon"></td>
-              <td><a href="${asset.browser_download_url}" class="download-btn">Скачать</a></td>
+              <td data-label="Версия">${asset.name}</td>
+              <td data-label="Дата загрузки">${date}</td>
+              <td data-label="Платформа"><img src="images/android.png" alt="Android" class="android-icon"></td>
+              <td data-label="Скачать"><a href="${asset.browser_download_url}" class="download-btn">Скачать</a></td>
             `;
             tbody.appendChild(tr);
           }
