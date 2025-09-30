@@ -9,33 +9,31 @@
     h1 { text-align:center; padding:20px; background:DodgerBlue; color:white; margin:0;}
 
     table {
-      width:95%;
+      width:90%;
+      max-width: 700px;
       margin:20px auto;
       border-collapse: collapse;
       background:white;
       box-shadow:0 0 10px rgba(0,0,0,0.1);
+      font-size: 14px;
     }
-    th, td { border:1px solid #ddd; padding:12px; text-align:center;}
+    th, td { border:1px solid #ddd; padding:10px; text-align:center;}
     th { background:#222; color:white;}
     tr:hover { background:#f1f1f1;}
-    .android-icon { width:32px; height:32px;}
-    .download-btn { padding:8px 16px; background:DodgerBlue; color:white; text-decoration:none; border-radius:5px;}
+    .android-icon { width:28px; height:28px;}
+    .download-btn { padding:6px 12px; background:DodgerBlue; color:white; text-decoration:none; border-radius:5px;}
     .download-btn:hover { background:RoyalBlue;}
 
     /* Адаптив для мобильных */
     @media (max-width: 600px) {
       table, thead, tbody, th, td, tr { display: block; width: 100%; }
+      table { width: 95%; font-size: 13px; }
       thead { display: none; }
-      tr { margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px; padding: 10px; background: #fff; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-      td { border: none; padding: 6px 10px; text-align: left; position: relative; }
-      td:before {
-        content: attr(data-label);
-        font-weight: bold;
-        display: inline-block;
-        width: 100px;
-      }
-      .android-icon { width:24px; height:24px; vertical-align: middle; }
-      .download-btn { display: inline-block; width: 100%; text-align:center; margin-top:5px; padding:8px; }
+      tr { margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px; padding: 8px; background: #fff; box-shadow: 0 0 3px rgba(0,0,0,0.1); }
+      td { border: none; padding: 5px 8px; text-align: left; position: relative; }
+      td:before { content: attr(data-label); font-weight: bold; display: inline-block; width: 90px; }
+      .android-icon { width:20px; height:20px; vertical-align: middle; }
+      .download-btn { display: block; width: 100%; text-align:center; margin-top:4px; padding:6px 0; font-size:13px; }
     }
   </style>
 </head>
