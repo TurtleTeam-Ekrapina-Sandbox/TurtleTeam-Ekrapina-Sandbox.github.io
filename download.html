@@ -7,13 +7,18 @@
   <style>
     body { font-family: Arial; background: #f4f4f4; margin:0; padding:0;}
     h1 { text-align:center; padding:20px; background:DodgerBlue; color:white; margin:0;}
-    table { width:90%; margin:20px auto; border-collapse: collapse; background:white; box-shadow:0 0 10px rgba(0,0,0,0.1);}
+    table { width:95%; margin:20px auto; border-collapse: collapse; background:white; box-shadow:0 0 10px rgba(0,0,0,0.1);}
     th, td { border:1px solid #ddd; padding:12px; text-align:center;}
     th { background:#222; color:white;}
     tr:hover { background:#f1f1f1;}
     .android-icon { width:32px; height:32px;}
     .download-btn { padding:8px 16px; background:DodgerBlue; color:white; text-decoration:none; border-radius:5px;}
     .download-btn:hover { background:RoyalBlue;}
+    @media (max-width: 600px) {
+      th, td { padding:8px; font-size:14px; }
+      .download-btn { padding:6px 12px; font-size:14px; }
+      .android-icon { width:24px; height:24px; }
+    }
   </style>
 </head>
 <body>
@@ -54,7 +59,7 @@
               <td>${release.name || release.tag_name}</td>
               <td>${date}</td>
               <td><img src="images/android.png" alt="Android" class="android-icon"></td>
-              <td><a href="${asset.browser_download_url}" class="download-btn">Скачать</a></td>
+              <td><a href="${asset.browser_download_url}" class="download-btn">${asset.name}</a></td>
             `;
             tbody.appendChild(tr);
           }
