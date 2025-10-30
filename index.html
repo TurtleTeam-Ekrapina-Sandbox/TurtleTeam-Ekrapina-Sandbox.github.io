@@ -37,6 +37,7 @@
       height: 74px;
       object-fit: cover;
       border-radius: 8px;
+      border: 2px solid white; /* рамка добавлена */
       transition: transform 0.3s ease;
     }
     .lang-btn img:hover { transform: scale(1.05); }
@@ -70,7 +71,11 @@
       h1 { font-size: 1.5em; }
       .buttons img { width: 120px; }
       .telegram-link { font-size: 16px; padding: 8px 16px; }
-      .lang-btn img { width: 64px; height: 64px; }
+      .lang-btn img { 
+        width: 64px; 
+        height: 64px; 
+        border: 2px solid white; /* рамка сохраняется на мобилках */
+      }
     }
   </style>
 </head>
@@ -142,11 +147,9 @@
       langBtn.querySelector("img").alt = text[lang].alt;
     }
 
-    // загружаем язык из localStorage
     let lang = localStorage.getItem("lang") || "ru";
     applyLang(lang);
 
-    // переключение
     langBtn.addEventListener("click", () => {
       lang = lang === "ru" ? "en" : "ru";
       localStorage.setItem("lang", lang);
