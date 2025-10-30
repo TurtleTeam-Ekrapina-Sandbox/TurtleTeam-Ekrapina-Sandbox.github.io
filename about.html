@@ -60,48 +60,78 @@ h1 {
   <img src="images/flag_ru.png" alt="Русский">
 </button>
 
-<h1>О проекте — Simple Sandbox: Reborn Reloaded и Turtle Games/Team</h1>
+<h1 id="h1-title">О проекте — Simple Sandbox: Reborn Reloaded и Turtle Games/Team</h1>
 
 <div class="container">
-  <p>Что такое SSB:RR?</p>
-  <p>
+  <p id="p1">Что такое SSB:RR?</p>
+  <p id="p2">
     Simple Sandbox: Reborn Reloaded является форк продолжением проекта Simple Sandbox: Reborn, который разрабатывался с 17 сентября 2024 года до 26 июня 2025 года, а после был заброшен автором по очевидным причинам: во-первых, у него хотели родители забрать ноутбук, во-вторых ему надоело. А позже этот разработчик слил всем исходники. Однако, не всё так радужно, зайдя в дядюшкин дом... Мы просто были в шоке от тамошнего "ремонта"))))
   </p>
-  <p>
+  <p id="p3">
     И уже 19 июля 2024 года мы начали наводить свои порядки. Ох, и багов мы повидали и решений принимавшихся каким-то аутистом... Нам пришлось переработать не одну систему для стабильного игрового процесса. Тем не менее, в отличие от предка, разработка игры продолжает идти полным ходом.
   </p>
-  <p>О Turtle Games/Team:</p>
-  <p>
+  <p id="p4">О Turtle Games/Team:</p>
+  <p id="p5">
     Turtle Team представляет собой объединение из официально двух человек и неофициально тех, кто нам помогает. Наш логотип был разработан на базе одной из иконок Python Turtle, а также потому что главный разработчик "ИС-4" любит черепашек! ❤ Первоначальное название проекта SSB:RR было Simple Sandbox: Reborn Turtle Edition, но концепция черепах переехала в наше объединение. Чтобы быть ближе к оригинальному проекту, разработчик Mister Sasha (Александр) предложил добавить вторую букву R, что означает «перезагрузка проекта», только качественно сделанная.
   </p>
-  <p>Разработчики:</p>
-  <p>Главный разраб и инициатор разработки - ИС-4</p>
-  <p>Дизайнер и моральный двигатель и заместитель - Александр</p>
+  <p id="p6">Разработчики:</p>
+  <p id="p7">Главный разраб и инициатор разработки - ИС-4</p>
+  <p id="p8">Дизайнер и моральный двигатель и заместитель - Александр</p>
 </div>
 
 <script>
-// === Локализация без изменения текста ===
+// === Локализация с дословным переводом ===
 const langBtn = document.getElementById("lang-toggle");
 let lang = localStorage.getItem("lang") || "ru";
 
-const text = {
-  ru: { flag: "images/flag_ru.png", alt: "Русский" },
-  en: { flag: "images/flag_us.png", alt: "English" }
+const translations = {
+  ru: {
+    h1: "О проекте — Simple Sandbox: Reborn Reloaded и Turtle Games/Team",
+    p1: "Что такое SSB:RR?",
+    p2: "Simple Sandbox: Reborn Reloaded является форк продолжением проекта Simple Sandbox: Reborn, который разрабатывался с 17 сентября 2024 года до 26 июня 2025 года, а после был заброшен автором по очевидным причинам: во-первых, у него хотели родители забрать ноутбук, во-вторых ему надоело. А позже этот разработчик слил всем исходники. Однако, не всё так радужно, зайдя в дядюшкин дом... Мы просто были в шоке от тамошнего \"ремонта\"))))",
+    p3: "И уже 19 июля 2024 года мы начали наводить свои порядки. Ох, и багов мы повидали и решений принимавшихся каким-то аутистом... Нам пришлось переработать не одну систему для стабильного игрового процесса. Тем не менее, в отличие от предка, разработка игры продолжает идти полным ходом.",
+    p4: "О Turtle Games/Team:",
+    p5: "Turtle Team представляет собой объединение из официально двух человек и неофициально тех, кто нам помогает. Наш логотип был разработан на базе одной из иконок Python Turtle, а также потому что главный разработчик \"ИС-4\" любит черепашек! ❤ Первоначальное название проекта SSB:RR было Simple Sandbox: Reborn Turtle Edition, но концепция черепах переехала в наше объединение. Чтобы быть ближе к оригинальному проекту, разработчик Mister Sasha (Александр) предложил добавить вторую букву R, что означает «перезагрузка проекта», только качественно сделанная.",
+    p6: "Разработчики:",
+    p7: "Главный разраб и инициатор разработки - ИС-4",
+    p8: "Дизайнер и моральный двигатель и заместитель - Александр",
+    flag: "images/flag_ru.png",
+    alt: "Русский"
+  },
+  en: {
+    h1: "About — Simple Sandbox: Reborn Reloaded and Turtle Games/Team",
+    p1: "What is SSB:RR?",
+    p2: "Simple Sandbox: Reborn Reloaded is a fork continuation of the Simple Sandbox: Reborn project, which was developed from September 17, 2024 to June 26, 2025, and later was abandoned by the author for obvious reasons: first, his parents wanted to take the laptop, second, he got tired. Later this developer released all the source code. However, not everything is so rosy, entering uncle's house... We were just shocked by the renovation there")))).",
+    p3: "And already on July 19, 2024, we began to put our own things in order. Oh, and we have seen bugs and solutions made by some autistic person... We had to redo more than one system for stable gameplay. Nevertheless, unlike the predecessor, game development continues at full speed.",
+    p4: "About Turtle Games/Team:",
+    p5: "Turtle Team is a union of officially two people and unofficially those who help us. Our logo was developed based on one of the Python Turtle icons, and also because the main developer 'ИС-4' loves turtles! ❤ The original project name of SSB:RR was Simple Sandbox: Reborn Turtle Edition, but the concept of turtles moved to our union. To be closer to the original project, the developer Mister Sasha (Alexander) proposed adding a second letter R, which means 'project reboot', only done properly.",
+    p6: "Developers:",
+    p7: "Chief developer and initiator of development - ИС-4",
+    p8: "Designer and moral engine and deputy - Alexander",
+    flag: "images/flag_us.png",
+    alt: "English"
+  }
 };
 
 function applyLanguage() {
+  for (const id in translations[lang]) {
+    if (id.startsWith("p") || id === "h1") {
+      const el = document.getElementById(id);
+      if(el) el.textContent = translations[lang][id];
+    }
+  }
   const img = langBtn.querySelector("img");
-  img.src = text[lang].flag;
-  img.alt = text[lang].alt;
+  img.src = translations[lang].flag;
+  img.alt = translations[lang].alt;
 }
 
 langBtn.addEventListener("click", () => {
   lang = lang === "ru" ? "en" : "ru";
-  applyLanguage();
   localStorage.setItem("lang", lang);
+  applyLanguage();
 });
 
-// Инициализация при загрузке страницы
+// Инициализация
 applyLanguage();
 </script>
 
