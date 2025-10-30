@@ -80,10 +80,11 @@ h1 {
 </div>
 
 <script>
-// === Локализация с дословным переводом ===
+// ==== Локализация ====
 const langBtn = document.getElementById("lang-toggle");
 let lang = localStorage.getItem("lang") || "ru";
 
+// Дословный перевод
 const translations = {
   ru: {
     h1: "О проекте — Simple Sandbox: Reborn Reloaded и Turtle Games/Team",
@@ -101,7 +102,7 @@ const translations = {
   en: {
     h1: "About — Simple Sandbox: Reborn Reloaded and Turtle Games/Team",
     p1: "What is SSB:RR?",
-    p2: "Simple Sandbox: Reborn Reloaded is a fork continuation of the Simple Sandbox: Reborn project, which was developed from September 17, 2024 to June 26, 2025, and later was abandoned by the author for obvious reasons: first, his parents wanted to take the laptop, second, he got tired. Later this developer released all the source code. However, not everything is so rosy, entering uncle's house... We were just shocked by the renovation there")))).",
+    p2: "Simple Sandbox: Reborn Reloaded is a fork continuation of the Simple Sandbox: Reborn project, which was developed from September 17, 2024 to June 26, 2025, and later was abandoned by the author for obvious reasons: first, his parents wanted to take the laptop, second, he got tired. Later this developer released all the source code. However, not everything is so rosy, entering uncle's house... We were just shocked by the renovation there\"))))",
     p3: "And already on July 19, 2024, we began to put our own things in order. Oh, and we have seen bugs and solutions made by some autistic person... We had to redo more than one system for stable gameplay. Nevertheless, unlike the predecessor, game development continues at full speed.",
     p4: "About Turtle Games/Team:",
     p5: "Turtle Team is a union of officially two people and unofficially those who help us. Our logo was developed based on one of the Python Turtle icons, and also because the main developer 'ИС-4' loves turtles! ❤ The original project name of SSB:RR was Simple Sandbox: Reborn Turtle Edition, but the concept of turtles moved to our union. To be closer to the original project, the developer Mister Sasha (Alexander) proposed adding a second letter R, which means 'project reboot', only done properly.",
@@ -117,7 +118,7 @@ function applyLanguage() {
   for (const id in translations[lang]) {
     if (id.startsWith("p") || id === "h1") {
       const el = document.getElementById(id);
-      if(el) el.textContent = translations[lang][id];
+      if (el) el.textContent = translations[lang][id];
     }
   }
   const img = langBtn.querySelector("img");
@@ -125,13 +126,14 @@ function applyLanguage() {
   img.alt = translations[lang].alt;
 }
 
+// Переключение языка
 langBtn.addEventListener("click", () => {
   lang = lang === "ru" ? "en" : "ru";
   localStorage.setItem("lang", lang);
   applyLanguage();
 });
 
-// Инициализация
+// Инициализация при загрузке
 applyLanguage();
 </script>
 
