@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>О проекте | SSB:RR</title>
+  <title data-lang="title">О проекте | SSB:RR</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       background: url("images/sky.jpg") no-repeat center center fixed;
       background-size: cover;
     }
@@ -18,7 +17,23 @@
       background-color: rgba(0, 0, 0, 0.9);
       color: white;
       margin: 0;
+      position: relative;
     }
+    .lang-btn {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      background: #1E90FF;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .lang-btn:hover { background: #187bcd; }
+
     .container {
       width: 90%;
       max-width: 900px;
@@ -37,36 +52,65 @@
 </head>
 <body>
 
-  <h1>О проекте — Simple Sandbox: Reborn Reloaded и Turtle Games/Team</h1>
+  <h1 data-lang="header">
+    О проекте — Simple Sandbox: Reborn Reloaded и Turtle Games/Team
+    <button class="lang-btn" onclick="toggleLang()">EN</button>
+  </h1>
 
-  <div class="container">
-    <p>Что такое SSB:RR?</p>
-    <p>
-      Simple Sandbox: Reborn Reloaded является форк продолжением проекта Simple Sandbox: Reborn, который
-      разрабатывался с 17 сентября 2024 года до 26 июня 2025 года, а после был заброшен автором по
-      очевидным причинам: во-первых, у него хотели родители забрать ноутбук, во-вторых ему надоело. 
-      А позже этот разработчик слил всем исходники. Однако, не всё так радужно,
-      зайдя в дядюшкин дом... Мы просто были в шоке от тамошнего "ремонта"))))
-    </p>
-    <p>
-      И уже 19 июля 2024 года мы начали наводить свои порядки. Ох, и багов мы повидали и решений принимавшихся
-      каким-то аутистом... Нам пришлось переработать не одну систему для стабильного игрового процесса.
-      Тем не менее, в отличие от предка, разработка игры продолжает идти полным ходом.
-    </p>
-    <p>О Turtle Games/Team:</p>
-    <p>
-      Turtle Team представляет собой объединение из официально двух человек
-      и неофициально тех, кто нам помогает. Наш логотип был разработан на базе одной из иконок Python Turtle,
-      а также потому что главный разработчик "ИС-4" любит черепашек! ❤
-      Первоначальное название проекта SSB:RR было Simple Sandbox: Reborn Turtle Edition,
-      но концепция черепах переехала в наше объединение. Чтобы быть ближе к оригинальному проекту,
-      разработчик Mister Sasha (Александр) предложил добавить вторую букву R,
-      что означает «перезагрузка проекта», только качественно сделанная.
-    </p>
-    <p>Разработчики:</p>
-    <p>Главный разраб и инициатор разработки - ИС-4</p>
-    <p>Дизайнер и моральный двигатель и заместитель - Александр</p>
+  <div class="container" id="content">
+    <!-- Контент подставляется из JS -->
   </div>
 
+<script>
+const content = {
+  ru: `
+    <p><b>Что такое SSB:RR?</b></p>
+    <p>
+      Simple Sandbox: Reborn Reloaded — это форк-продолжение Simple Sandbox: Reborn, который
+      разрабатывался с 17 сентября 2024 по 26 июня 2025 года, после чего был заброшен автором.
+      Мы взялись за дело 19 июля 2024 года и начали чинить всё подряд. Работа идёт полным ходом!
+    </p>
+    <p><b>О Turtle Games/Team:</b></p>
+    <p>
+      Turtle Team — это команда из двух официальных участников и нескольких помощников.
+      Логотип вдохновлён Python Turtle, а название связано с любовью к черепахам 🐢❤
+    </p>
+    <p><b>Разработчики:</b></p>
+    <p>Главный разработчик — ИС-4</p>
+    <p>Дизайнер и сооснователь — Александр</p>
+  `,
+  en: `
+    <p><b>What is SSB:RR?</b></p>
+    <p>
+      Simple Sandbox: Reborn Reloaded is a fork and continuation of Simple Sandbox: Reborn,
+      developed from September 17, 2024 to June 26, 2025, later abandoned by its author.
+      On July 19, 2024, we took over and started fixing everything. The project is alive and progressing!
+    </p>
+    <p><b>About Turtle Games/Team:</b></p>
+    <p>
+      Turtle Team consists of two main members and several helpers.
+      The logo was inspired by Python Turtle — and by our love for turtles 🐢❤
+    </p>
+    <p><b>Developers:</b></p>
+    <p>Main developer — IS-4</p>
+    <p>Designer & co-founder — Alexander</p>
+  `
+};
+
+function toggleLang() {
+  const lang = localStorage.getItem("lang") === "ru" ? "en" : "ru";
+  setLang(lang);
+}
+
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+  document.documentElement.lang = lang;
+  document.querySelector(".lang-btn").textContent = lang === "ru" ? "EN" : "RU";
+  document.querySelector("#content").innerHTML = content[lang];
+  document.title = lang === "ru" ? "О проекте | SSB:RR" : "About | SSB:RR";
+}
+
+setLang(localStorage.getItem("lang") || "ru");
+</script>
 </body>
 </html>
