@@ -13,23 +13,21 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  position: relative;
 }
 
 /* Верхнее голубое поле — панель */
-h1 {
-  text-align: center;
-  padding: 12px 60px 12px 12px; /* справа оставлено место для флага */
+.header {
+  position: relative;
   background: DodgerBlue;
   color: white;
-  margin: 0;
+  text-align: center;
+  padding: 12px 12px;
   font-size: 1.3em;
-  position: relative;
+  line-height: 40px;
   box-sizing: border-box;
-  line-height: 40px; /* выравнивание с флагом по вертикали */
 }
 
-/* Флаг локализации — внутри панели, не выходит за её пределы */
+/* Флаг локализации */
 .lang-btn {
   position: absolute;
   top: 50%;
@@ -46,7 +44,7 @@ h1 {
   z-index: 10;
 }
 .lang-btn img {
-  width: 36px;   /* уменьшенный размер для аккуратного вписывания */
+  width: 36px;
   height: 36px;
   object-fit: cover;
   border-radius: 4px;
@@ -89,7 +87,6 @@ tr:hover { background: #f1f1f1; }
 }
 .download-btn:hover { background: RoyalBlue; }
 
-/* Текст перед кнопкой */
 .drive-text {
   text-align: center;
   margin-top: 15px;
@@ -97,7 +94,6 @@ tr:hover { background: #f1f1f1; }
   color: #333;
 }
 
-/* Кнопка Google Drive */
 .drive-btn {
   display: flex;
   align-items: center;
@@ -156,18 +152,19 @@ tr:hover { background: #f1f1f1; }
   .download-btn { padding: 4px 0; font-size: 12px; }
   .drive-btn { width: 90%; font-size: 14px; gap: 8px; }
   .drive-btn img { width: 28px; height: 28px; }
-  h1 { padding: 12px 50px 12px 12px; font-size: 1.1em; line-height: 32px; }
+  .header { font-size: 1.1em; line-height: 32px; padding: 12px 12px; }
   .lang-btn img { width: 28px; height: 28px; }
 }
 </style>
 </head>
 <body>
 
-<button class="lang-btn" id="lang-toggle">
-  <img src="images/flag_ru.png" alt="Русский">
-</button>
-
-<h1>Скачать — Simple Sandbox: Reborn Reloaded</h1>
+<div class="header">
+  Скачать — Simple Sandbox: Reborn Reloaded
+  <button class="lang-btn" id="lang-toggle">
+    <img src="images/flag_ru.png" alt="Русский">
+  </button>
+</div>
 
 <table>
   <thead>
@@ -256,7 +253,7 @@ const text = {
 };
 
 function applyLanguage() {
-  document.querySelector("h1").textContent = text[lang].h1;
+  document.querySelector(".header").childNodes[0].nodeValue = text[lang].h1;
   document.querySelector(".drive-text").textContent = text[lang].driveText;
   document.querySelector(".drive-btn span").textContent = text[lang].driveBtn;
   const img = langBtn.querySelector("img");
