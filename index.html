@@ -19,7 +19,6 @@
     }
     h1 { font-size: 2em; margin: 0; }
 
-    /* Кнопка локализации */
     .lang-btn {
       position: absolute;
       top: 10px;
@@ -33,7 +32,6 @@
       justify-content: center;
     }
 
-    /* Размер флага на ПК — 74×74 */
     .lang-btn img {
       width: 74px;
       height: 74px;
@@ -41,10 +39,7 @@
       border-radius: 8px;
       transition: transform 0.3s ease;
     }
-
-    .lang-btn img:hover {
-      transform: scale(1.05);
-    }
+    .lang-btn img:hover { transform: scale(1.05); }
 
     .buttons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
     .buttons img { width: 150px; max-width: 45vw; cursor: pointer; }
@@ -71,12 +66,11 @@
     .telegram-link a { text-decoration: none; color: white; }
     .telegram-link a:hover { text-decoration: underline; }
 
-    /* Адаптация под мобильные */
     @media (max-width: 600px) {
       h1 { font-size: 1.5em; }
       .buttons img { width: 120px; }
       .telegram-link { font-size: 16px; padding: 8px 16px; }
-      .lang-btn img { width: 64px; height: 64px; } /* компактнее на телефонах */
+      .lang-btn img { width: 64px; height: 64px; }
     }
   </style>
 </head>
@@ -117,7 +111,6 @@
 
   <script>
     const langBtn = document.getElementById("lang-toggle");
-    let lang = "ru";
 
     const text = {
       ru: {
@@ -140,14 +133,24 @@
       },
     };
 
-    langBtn.addEventListener("click", () => {
-      lang = lang === "ru" ? "en" : "ru";
+    function applyLang(lang) {
       document.getElementById("title").textContent = text[lang].title;
       document.getElementById("caption").textContent = text[lang].caption;
       document.getElementById("description").textContent = text[lang].description;
       document.getElementById("telegram-text").textContent = text[lang].telegram;
       langBtn.querySelector("img").src = text[lang].flag;
       langBtn.querySelector("img").alt = text[lang].alt;
+    }
+
+    // загружаем язык из localStorage
+    let lang = localStorage.getItem("lang") || "ru";
+    applyLang(lang);
+
+    // переключение
+    langBtn.addEventListener("click", () => {
+      lang = lang === "ru" ? "en" : "ru";
+      localStorage.setItem("lang", lang);
+      applyLang(lang);
     });
   </script>
 
