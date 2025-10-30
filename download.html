@@ -3,19 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Скачать APK | SSB:RR</title>
+<title data-lang="title">Скачать APK | SSB:RR</title>
 <style>
 body {
   font-family: Arial, sans-serif;
   background: #f4f4f4;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
+  margin: 0; padding: 0;
+  display: flex; flex-direction: column;
   min-height: 100vh;
 }
-
-/* Верхнее голубое поле */
 h1 {
   text-align: center;
   padding: 12px 8px;
@@ -23,17 +19,28 @@ h1 {
   color: white;
   margin: 0;
   font-size: 1.3em;
-  word-wrap: break-word;
+  position: relative;
 }
+.lang-btn {
+  position: absolute;
+  right: 15px; top: 8px;
+  background: white;
+  color: DodgerBlue;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.lang-btn:hover { background: #eee; }
 
-/* Таблица */
 table {
   width: 98%;
   max-width: 600px;
   margin: 12px auto;
   border-collapse: collapse;
   font-size: 13px;
-  flex: 1;
   background: white;
   border-radius: 6px;
   overflow: hidden;
@@ -42,11 +49,7 @@ th, td { border: 1px solid #ddd; padding: 6px; text-align: center; }
 th { background: #222; color: white; }
 tr:hover { background: #f1f1f1; }
 
-.icon {
-  width: 20px;
-  height: 20px;
-  vertical-align: middle;
-}
+.icon { width: 20px; height: 20px; vertical-align: middle; }
 
 .download-btn {
   padding: 5px 0;
@@ -60,19 +63,14 @@ tr:hover { background: #f1f1f1; }
 }
 .download-btn:hover { background: RoyalBlue; }
 
-/* Текст перед кнопкой */
 .drive-text {
   text-align: center;
   margin-top: 15px;
   font-weight: bold;
   color: #333;
 }
-
-/* Кнопка Google Drive */
 .drive-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   gap: 10px;
   width: 320px;
   margin: 10px auto 25px;
@@ -86,18 +84,14 @@ tr:hover { background: #f1f1f1; }
   font-size: 15px;
   transition: background 0.3s, transform 0.2s;
 }
-.drive-btn:hover {
-  background: #187bcd;
-  transform: translateY(-1px);
-}
+.drive-btn:hover { background: #187bcd; transform: translateY(-1px); }
 .drive-btn img {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
   display: block;
 }
 
-/* Мобильная адаптация */
 @media (max-width: 600px) {
   table, thead, tbody, th, td, tr { display: block; width: 100%; }
   thead { display: none; }
@@ -108,56 +102,45 @@ tr:hover { background: #f1f1f1; }
     padding: 6px;
     background: #fff;
     box-shadow: 0 0 2px rgba(0,0,0,0.1);
-    word-wrap: break-word;
   }
-  td {
-    border: none;
-    padding: 4px 6px;
-    text-align: left;
-    position: relative;
-  }
+  td { border: none; padding: 4px 6px; text-align: left; position: relative; }
   td:before {
     content: attr(data-label);
     font-weight: bold;
     display: inline-block;
     width: 85px;
-    vertical-align: top;
   }
-  .icon { width: 16px; height: 16px; vertical-align: middle; }
+  .icon { width: 16px; height: 16px; }
   .download-btn { padding: 4px 0; font-size: 12px; }
-  .drive-btn {
-    width: 90%;
-    font-size: 14px;
-    gap: 8px;
-  }
-  .drive-btn img {
-    width: 28px;
-    height: 28px;
-  }
+  .drive-btn { width: 90%; font-size: 14px; gap: 8px; }
+  .drive-btn img { width: 40px; height: 40px; }
 }
 </style>
 </head>
 <body>
 
-<h1>Скачать — Simple Sandbox: Reborn Reloaded</h1>
+<h1 data-lang="header">
+  Скачать — Simple Sandbox: Reborn Reloaded
+  <button class="lang-btn" onclick="toggleLang()">EN</button>
+</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Файл</th>
-      <th>Дата загрузки</th>
-      <th>Платформа</th>
-      <th>Скачать</th>
+      <th data-lang="file">Файл</th>
+      <th data-lang="date">Дата загрузки</th>
+      <th data-lang="platform">Платформа</th>
+      <th data-lang="download">Скачать</th>
     </tr>
   </thead>
   <tbody id="apk-list"></tbody>
 </table>
 
-<!-- Текст и кнопка Google Drive -->
-<div class="drive-text">Не нашли старые версии?</div>
-<a href="https://drive.google.com/drive/folders/1vKNeh_uiTHlb0bRFElCNrWtdJy6Spxtp?usp=drive_link" target="_blank" class="drive-btn">
+<div class="drive-text" data-lang="driveText">Не нашли старые версии?</div>
+<a href="https://drive.google.com/drive/folders/1vKNeh_uiTHlb0bRFElCNrWtdJy6Spxtp?usp=drive_link"
+   target="_blank" class="drive-btn">
   <img src="images/drive.png" alt="Drive">
-  Скачать старые версии из Google Drive
+  <span data-lang="driveBtn">Скачать старые версии из Google Drive</span>
 </a>
 
 <script>
@@ -170,7 +153,6 @@ async function fetchReleases() {
     const response = await fetch(apiURL);
     if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
     const releases = await response.json();
-
     const tbody = document.getElementById("apk-list");
     tbody.innerHTML = "";
 
@@ -180,8 +162,6 @@ async function fetchReleases() {
         const date = new Date(asset.updated_at).toLocaleDateString("ru-RU", {
           day: "numeric", month: "long", year: "numeric"
         });
-
-        // Определяем иконку
         let iconSrc = "images/unknown.png";
         if (fileName.endsWith(".apk")) iconSrc = "images/android.png";
         else if (fileName.endsWith(".zip")) iconSrc = "images/windows.png";
@@ -197,18 +177,48 @@ async function fetchReleases() {
       });
     });
 
-    if (tbody.innerHTML === "") {
-      tbody.innerHTML = `<tr><td colspan="4">Файлы не найдены</td></tr>`;
-    }
-
+    if (!tbody.innerHTML) tbody.innerHTML = `<tr><td colspan="4">Файлы не найдены</td></tr>`;
   } catch (error) {
-    document.getElementById("apk-list").innerHTML = `<tr><td colspan="4">Ошибка загрузки: ${error.message}</td></tr>`;
+    document.getElementById("apk-list").innerHTML =
+      `<tr><td colspan="4">Ошибка загрузки: ${error.message}</td></tr>`;
   }
 }
 
+const langText = {
+  ru: {
+    header: "Скачать — Simple Sandbox: Reborn Reloaded",
+    file: "Файл", date: "Дата загрузки", platform: "Платформа", download: "Скачать",
+    driveText: "Не нашли старые версии?",
+    driveBtn: "Скачать старые версии из Google Drive",
+    title: "Скачать APK | SSB:RR"
+  },
+  en: {
+    header: "Download — Simple Sandbox: Reborn Reloaded",
+    file: "File", date: "Upload Date", platform: "Platform", download: "Download",
+    driveText: "Looking for older versions?",
+    driveBtn: "Download old versions from Google Drive",
+    title: "Download APK | SSB:RR"
+  }
+};
+
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+  document.documentElement.lang = lang;
+  document.querySelector(".lang-btn").textContent = lang === "ru" ? "EN" : "RU";
+  document.title = langText[lang].title;
+  document.querySelectorAll("[data-lang]").forEach(el => {
+    const key = el.getAttribute("data-lang");
+    if (langText[lang][key]) el.textContent = langText[lang][key];
+  });
+}
+
+function toggleLang() {
+  const lang = localStorage.getItem("lang") === "ru" ? "en" : "ru";
+  setLang(lang);
+}
+
+setLang(localStorage.getItem("lang") || "ru");
 fetchReleases();
 </script>
-
 </body>
 </html>
-
