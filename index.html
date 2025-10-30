@@ -28,11 +28,22 @@
       border: none;
       cursor: pointer;
       padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
+    /* Фиксированный размер — не сжимается на ПК */
     .lang-btn img {
       width: 94px;
       height: 94px;
+      object-fit: cover;
       border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .lang-btn img:hover {
+      transform: scale(1.05);
     }
 
     .buttons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
@@ -60,11 +71,12 @@
     .telegram-link a { text-decoration: none; color: white; }
     .telegram-link a:hover { text-decoration: underline; }
 
+    /* Адаптация под мобильные */
     @media (max-width: 600px) {
       h1 { font-size: 1.5em; }
       .buttons img { width: 120px; }
       .telegram-link { font-size: 16px; padding: 8px 16px; }
-      .lang-btn img { width: 64px; height: 64px; }
+      .lang-btn img { width: 74px; height: 74px; } /* немного меньше для телефонов */
     }
   </style>
 </head>
