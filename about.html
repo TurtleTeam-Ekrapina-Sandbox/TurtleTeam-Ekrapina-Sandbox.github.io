@@ -1,180 +1,109 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SSB:RR | О Turtle Team</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      color: #222;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О проекте | SSB:RR</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url("images/sky.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+h1 {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  margin: 0;
+}
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  line-height: 1.6;
+  border: 2px solid #ddd;
+}
+@media (max-width: 600px) {
+  .container { padding: 15px; margin: 20px auto; }
+  h1 { font-size: 1.5em; padding: 15px; }
+}
 
-    .hero {
-      background-color: DodgerBlue;
-      color: white;
-      padding: 30px 10px;
-      position: relative;
-    }
-
-    h1 {
-      font-size: 2em;
-      margin: 0;
-    }
-
-    /* Кнопка локализации */
-    .lang-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lang-btn img {
-      width: 74px;
-      height: 74px;
-      object-fit: cover;
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-    }
-
-    .lang-btn img:hover {
-      transform: scale(1.05);
-    }
-
-    .content {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    .section {
-      margin-bottom: 40px;
-    }
-
-    .section h2 {
-      font-size: 1.6em;
-      color: DodgerBlue;
-    }
-
-    .section p {
-      font-size: 1.1em;
-      line-height: 1.6em;
-      text-align: justify;
-    }
-
-    .logo {
-      display: block;
-      margin: 20px auto;
-      width: 200px;
-      border-radius: 10px;
-    }
-
-    /* Адаптация под мобильные */
-    @media (max-width: 600px) {
-      h1 { font-size: 1.6em; }
-      .section h2 { font-size: 1.3em; }
-      .section p { font-size: 1em; }
-      .lang-btn img { width: 64px; height: 64px; }
-    }
-  </style>
+/* Флаг локализации */
+.lang-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.lang-btn img {
+  width: 74px;
+  height: 74px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+.lang-btn img:hover { transform: scale(1.05); }
+</style>
 </head>
 <body>
 
-  <div class="hero">
-    <button class="lang-btn" id="lang-toggle">
-      <img src="images/flag_ru.png" alt="Русский">
-    </button>
-    <h1 id="title">О Turtle Team</h1>
-  </div>
+<button class="lang-btn" id="lang-toggle">
+  <img src="images/flag_ru.png" alt="Русский">
+</button>
 
-  <div class="content">
-    <img src="images/turtle_team.webp" alt="Turtle Team Logo" class="logo">
+<h1>О проекте — Simple Sandbox: Reborn Reloaded и Turtle Games/Team</h1>
 
-    <div class="section">
-      <h2 id="team-header">Наша команда</h2>
-      <p id="team-text">
-        Turtle Team — это небольшая, но сплочённая команда энтузиастов, посвятивших себя улучшению и развитию проекта Simple Sandbox:Reborn Reloaded. Мы стремимся создавать честную, открытую и дружелюбную атмосферу для всех игроков и разработчиков.
-      </p>
-    </div>
+<div class="container">
+  <p>Что такое SSB:RR?</p>
+  <p>
+    Simple Sandbox: Reborn Reloaded является форк продолжением проекта Simple Sandbox: Reborn, который разрабатывался с 17 сентября 2024 года до 26 июня 2025 года, а после был заброшен автором по очевидным причинам: во-первых, у него хотели родители забрать ноутбук, во-вторых ему надоело. А позже этот разработчик слил всем исходники. Однако, не всё так радужно, зайдя в дядюшкин дом... Мы просто были в шоке от тамошнего "ремонта"))))
+  </p>
+  <p>
+    И уже 19 июля 2024 года мы начали наводить свои порядки. Ох, и багов мы повидали и решений принимавшихся каким-то аутистом... Нам пришлось переработать не одну систему для стабильного игрового процесса. Тем не менее, в отличие от предка, разработка игры продолжает идти полным ходом.
+  </p>
+  <p>О Turtle Games/Team:</p>
+  <p>
+    Turtle Team представляет собой объединение из официально двух человек и неофициально тех, кто нам помогает. Наш логотип был разработан на базе одной из иконок Python Turtle, а также потому что главный разработчик "ИС-4" любит черепашек! ❤ Первоначальное название проекта SSB:RR было Simple Sandbox: Reborn Turtle Edition, но концепция черепах переехала в наше объединение. Чтобы быть ближе к оригинальному проекту, разработчик Mister Sasha (Александр) предложил добавить вторую букву R, что означает «перезагрузка проекта», только качественно сделанная.
+  </p>
+  <p>Разработчики:</p>
+  <p>Главный разраб и инициатор разработки - ИС-4</p>
+  <p>Дизайнер и моральный двигатель и заместитель - Александр</p>
+</div>
 
-    <div class="section">
-      <h2 id="project-header">О проекте</h2>
-      <p id="project-text">
-        Simple Sandbox:Reborn Reloaded — это ремейк легендарной песочницы Simple Sandbox:Classic с улучшенным управлением, новой графикой и исправленными ошибками оригинала. Наша цель — показать, каким мог бы быть оригинальный проект, если бы он развивался с любовью и вниманием к игрокам.
-      </p>
-    </div>
+<script>
+// === Локализация ===
+let lang = localStorage.getItem("lang") || "ru";
+const langBtn = document.getElementById("lang-toggle");
 
-    <div class="section">
-      <h2 id="future-header">Наши планы</h2>
-      <p id="future-text">
-        В будущем мы планируем добавить больше возможностей для творчества, реализовать систему пользовательских модификаций и развивать мультиплеер. Мы слушаем сообщество и всегда открыты для идей.
-      </p>
-    </div>
-  </div>
+const text = {
+  ru: { flag: "images/flag_ru.png", alt: "Русский" },
+  en: { flag: "images/flag_us.png", alt: "English" }
+};
 
-  <script>
-    // === Синхронизация с глобальной локализацией ===
-    let lang = localStorage.getItem("lang") || "ru";
+function applyLanguage() {
+  const img = langBtn.querySelector("img");
+  img.src = text[lang].flag;
+  img.alt = text[lang].alt;
+}
 
-    const text = {
-      ru: {
-        title: "О Turtle Team",
-        teamHeader: "Наша команда",
-        teamText: "Turtle Team — это небольшая, но сплочённая команда энтузиастов, посвятивших себя улучшению и развитию проекта Simple Sandbox:Reborn Reloaded. Мы стремимся создавать честную, открытую и дружелюбную атмосферу для всех игроков и разработчиков.",
-        projectHeader: "О проекте",
-        projectText: "Simple Sandbox:Reborn Reloaded — это ремейк легендарной песочницы Simple Sandbox:Classic с улучшенным управлением, новой графикой и исправленными ошибками оригинала. Наша цель — показать, каким мог бы быть оригинальный проект, если бы он развивался с любовью и вниманием к игрокам.",
-        futureHeader: "Наши планы",
-        futureText: "В будущем мы планируем добавить больше возможностей для творчества, реализовать систему пользовательских модификаций и развивать мультиплеер. Мы слушаем сообщество и всегда открыты для идей.",
-        flag: "images/flag_ru.png",
-        alt: "Русский"
-      },
-      en: {
-        title: "About Turtle Team",
-        teamHeader: "Our Team",
-        teamText: "Turtle Team is a small but united group of enthusiasts dedicated to improving and evolving the Simple Sandbox:Reborn Reloaded project. We strive to create an honest, open, and friendly environment for all players and developers.",
-        projectHeader: "About the Project",
-        projectText: "Simple Sandbox:Reborn Reloaded is a remake of the legendary sandbox Simple Sandbox:Classic, featuring improved controls, upgraded visuals, and bug fixes from the original. Our goal is to show what the original could have become if developed with love and care for the players.",
-        futureHeader: "Our Future Plans",
-        futureText: "In the future, we plan to add more creative tools, implement a modding system, and expand multiplayer capabilities. We listen to the community and are always open to new ideas.",
-        flag: "images/flag_us.png",
-        alt: "English"
-      }
-    };
+langBtn.addEventListener("click", () => {
+  lang = lang === "ru" ? "en" : "ru";
+  applyLanguage();
+  localStorage.setItem("lang", lang);
+});
 
-    const langBtn = document.getElementById("lang-toggle");
-
-    function applyLanguage() {
-      document.getElementById("title").textContent = text[lang].title;
-      document.getElementById("team-header").textContent = text[lang].teamHeader;
-      document.getElementById("team-text").textContent = text[lang].teamText;
-      document.getElementById("project-header").textContent = text[lang].projectHeader;
-      document.getElementById("project-text").textContent = text[lang].projectText;
-      document.getElementById("future-header").textContent = text[lang].futureHeader;
-      document.getElementById("future-text").textContent = text[lang].futureText;
-      langBtn.querySelector("img").src = text[lang].flag;
-      langBtn.querySelector("img").alt = text[lang].alt;
-      localStorage.setItem("lang", lang);
-    }
-
-    langBtn.addEventListener("click", () => {
-      lang = lang === "ru" ? "en" : "ru";
-      applyLanguage();
-    });
-
-    applyLanguage();
-  </script>
+// Инициализация при загрузке страницы
+applyLanguage();
+</script>
 
 </body>
 </html>
