@@ -12,12 +12,15 @@ body {
   background: url("images/sky.jpg") no-repeat center center fixed;
   background-size: cover;
 }
+
+/* Верхняя панель */
 h1 {
   text-align: center;
-  padding: 20px;
+  padding: 25px 10px;           /* ПК: увеличенная высота */
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
   margin: 0;
+  font-size: 2em;               /* ПК: увеличенный шрифт */
 }
 .container {
   width: 90%;
@@ -31,7 +34,7 @@ h1 {
 }
 @media (max-width: 600px) {
   .container { padding: 15px; margin: 20px auto; }
-  h1 { font-size: 1.5em; padding: 15px; }
+  h1 { font-size: 1.7em; padding: 20px 8px; } /* Мобильные: увеличенный размер и высота */
 }
 
 /* Флаг локализации */
@@ -45,8 +48,8 @@ h1 {
   padding: 0;
 }
 .lang-btn img {
-  width: 74px;
-  height: 74px;
+  width: 80px;                  /* ПК: увеличенный флаг */
+  height: 80px;
   object-fit: cover;
   border-radius: 8px;
   transition: transform 0.3s;
