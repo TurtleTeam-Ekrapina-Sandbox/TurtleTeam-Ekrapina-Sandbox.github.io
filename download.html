@@ -10,6 +10,9 @@ body {
   background: #f4f4f4;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Верхнее голубое поле */
@@ -30,11 +33,14 @@ table {
   margin: 12px auto;
   border-collapse: collapse;
   font-size: 13px;
+  flex: 1;
 }
 th, td { border: 1px solid #ddd; padding: 6px; text-align: center; }
 th { background: #222; color: white; }
 tr:hover { background: #f1f1f1; }
-.android-icon { width: 20px; height: 20px; }
+
+.icon { width: 20px; height: 20px; }
+
 .download-btn {
   padding: 5px 0;
   background: DodgerBlue;
@@ -46,6 +52,22 @@ tr:hover { background: #f1f1f1; }
   text-align: center;
 }
 .download-btn:hover { background: RoyalBlue; }
+
+/* Кнопка Google Drive */
+.drive-btn {
+  display: block;
+  width: 220px;
+  margin: 20px auto;
+  background: #34A853;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.drive-btn:hover { background: #2C8C45; }
 
 /* Мобильная адаптация — карточки */
 @media (max-width: 600px) {
@@ -73,19 +95,19 @@ tr:hover { background: #f1f1f1; }
     width: 85px;
     vertical-align: top;
   }
-  .android-icon { width: 16px; height: 16px; vertical-align: middle; }
+  .icon { width: 16px; height: 16px; vertical-align: middle; }
   .download-btn { padding: 4px 0; font-size: 12px; }
 }
 </style>
 </head>
 <body>
 
-<h1>Скачать APK — Simple Sandbox: Reborn Reloaded</h1>
+<h1>Скачать — Simple Sandbox: Reborn Reloaded</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Версия</th>
+      <th>Файл</th>
       <th>Дата загрузки</th>
       <th>Платформа</th>
       <th>Скачать</th>
@@ -93,6 +115,11 @@ tr:hover { background: #f1f1f1; }
   </thead>
   <tbody id="apk-list"></tbody>
 </table>
+
+<!-- Кнопка для Google Drive -->
+<a href="https://drive.google.com/drive/folders/ВАША_ССЫЛКА" target="_blank" class="drive-btn">
+  📦 Открыть Google Drive
+</a>
 
 <script>
 const repoOwner = "TurtleTeamSSBRR";
@@ -110,24 +137,29 @@ async function fetchReleases() {
 
     releases.forEach(release => {
       release.assets.forEach(asset => {
-        if (asset.name.endsWith(".apk")) {
-          const date = new Date(asset.updated_at).toLocaleDateString("ru-RU", {
-            day: "numeric", month: "long", year: "numeric"
-          });
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td data-label="Версия">${asset.name}</td>
-            <td data-label="Дата загрузки">${date}</td>
-            <td data-label="Платформа"><img src="images/android.png" alt="Android" class="android-icon"></td>
-            <td data-label="Скачать"><a href="${asset.browser_download_url}" class="download-btn">Скачать</a></td>
-          `;
-          tbody.appendChild(tr);
-        }
+        const fileName = asset.name.toLowerCase();
+        const date = new Date(asset.updated_at).toLocaleDateString("ru-RU", {
+          day: "numeric", month: "long", year: "numeric"
+        });
+
+        // Определяем иконку
+        let iconSrc = "images/unknown.png";
+        if (fileName.endsWith(".apk")) iconSrc = "images/android.png";
+        else if (fileName.endsWith(".zip")) iconSrc = "images/windows.png";
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td data-label="Файл">${asset.name}</td>
+          <td data-label="Дата загрузки">${date}</td>
+          <td data-label="Платформа"><img src="${iconSrc}" alt="icon" class="icon"></td>
+          <td data-label="Скачать"><a href="${asset.browser_download_url}" class="download-btn">Скачать</a></td>
+        `;
+        tbody.appendChild(tr);
       });
     });
 
     if (tbody.innerHTML === "") {
-      tbody.innerHTML = `<tr><td colspan="4">APK файлов не найдено</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="4">Файлы не найдены</td></tr>`;
     }
 
   } catch (error) {
