@@ -16,19 +16,21 @@ body {
 /* Верхняя чёрная панель */
 h1 {
   text-align: center;
-  padding: 20px;
+  padding: 20px 80px 20px 20px; /* справа место под флаг */
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
   margin: 0;
   position: relative; /* для флага */
   box-sizing: border-box;
+  line-height: 64px; /* выравниваем текст по центру с флагом */
 }
 
 /* Флаг локализации */
 .lang-btn {
   position: absolute;
-  top: 6px;
-  right: 6px;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
   background: rgba(255,255,255,0.1);
   border: 1px solid white;
   border-radius: 8px;
@@ -37,15 +39,18 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
 .lang-btn img {
-  width: 64px;   /* теперь в пределах панели */
-  height: 64px;
+  width: 60px;   /* уменьшенный размер для аккуратного вписывания */
+  height: 60px;
   object-fit: cover;
   border-radius: 6px;
   transition: transform 0.3s;
 }
-.lang-btn img:hover { transform: scale(1.05); }
+.lang-btn img:hover {
+  transform: scale(1.05);
+}
 
 /* Контейнер текста */
 .container {
@@ -59,10 +64,11 @@ h1 {
   border: 2px solid #ddd;
 }
 
+/* Мобильная адаптация */
 @media (max-width: 600px) {
   .container { padding: 15px; margin: 20px auto; }
-  h1 { font-size: 1.5em; padding: 15px; }
-  .lang-btn img { width: 54px; height: 54px; }
+  h1 { font-size: 1.5em; padding: 15px 70px 15px 15px; line-height: 50px; }
+  .lang-btn img { width: 50px; height: 50px; }
 }
 </style>
 </head>
