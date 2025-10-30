@@ -13,18 +13,39 @@ body {
   background-size: cover;
 }
 
-/* Верхняя панель */
+/* Верхняя чёрная панель */
 h1 {
   text-align: center;
-  padding: 25px 10px;           /* ПК: увеличенная высота */
+  padding: 20px;
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
   margin: 0;
-  font-size: 2em;               /* ПК: увеличенный шрифт */
+  position: relative; /* для флага */
+  box-sizing: border-box;
 }
-@media (max-width: 600px) {
-  h1 { font-size: 1.7em; padding: 20px 8px; } /* Мобильные: увеличенный размер и высота */
+
+/* Флаг локализации */
+.lang-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.lang-btn img {
+  width: 64px;   /* теперь в пределах панели */
+  height: 64px;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: transform 0.3s;
+}
+.lang-btn img:hover { transform: scale(1.05); }
 
 /* Контейнер текста */
 .container {
@@ -37,30 +58,11 @@ h1 {
   line-height: 1.6;
   border: 2px solid #ddd;
 }
+
 @media (max-width: 600px) {
   .container { padding: 15px; margin: 20px auto; }
-}
-
-/* Флаг локализации */
-.lang-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-.lang-btn img {
-  width: 80px; /* ПК: увеличенный флаг */
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s;
-}
-.lang-btn img:hover { transform: scale(1.05); }
-@media (max-width: 600px) {
-  .lang-btn img { width: 70px; height: 70px; } /* Мобильные */
+  h1 { font-size: 1.5em; padding: 15px; }
+  .lang-btn img { width: 54px; height: 54px; }
 }
 </style>
 </head>
@@ -74,17 +76,23 @@ h1 {
 
 <div class="container">
   <p id="p1">Что такое SSB:RR?</p>
-  <p id="p2">Simple Sandbox: Reborn Reloaded является форк продолжением проекта Simple Sandbox: Reborn, который разрабатывался с 17 сентября 2024 года до 26 июня 2025 года, а после был заброшен автором по очевидным причинам: во-первых, у него хотели родители забрать ноутбук, во-вторых ему надоело. А позже этот разработчик слил всем исходники. Однако, не всё так радужно, зайдя в дядюшкин дом... Мы просто были в шоке от тамошнего "ремонта"))))</p>
-  <p id="p3">И уже 19 июля 2024 года мы начали наводить свои порядки. Ох, и багов мы повидали и решений принимавшихся каким-то аутистом... Нам пришлось переработать не одну систему для стабильного игрового процесса. Тем не менее, в отличие от предка, разработка игры продолжает идти полным ходом.</p>
+  <p id="p2">
+    Simple Sandbox: Reborn Reloaded является форк продолжением проекта Simple Sandbox: Reborn, который разрабатывался с 17 сентября 2024 года до 26 июня 2025 года, а после был заброшен автором по очевидным причинам: во-первых, у него хотели родители забрать ноутбук, во-вторых ему надоело. А позже этот разработчик слил всем исходники. Однако, не всё так радужно, зайдя в дядюшкин дом... Мы просто были в шоке от тамошнего "ремонта"))))
+  </p>
+  <p id="p3">
+    И уже 19 июля 2024 года мы начали наводить свои порядки. Ох, и багов мы повидали и решений принимавшихся каким-то аутистом... Нам пришлось переработать не одну систему для стабильного игрового процесса. Тем не менее, в отличие от предка, разработка игры продолжает идти полным ходом.
+  </p>
   <p id="p4">О Turtle Games/Team:</p>
-  <p id="p5">Turtle Team представляет собой объединение из официально двух человек и неофициально тех, кто нам помогает. Наш логотип был разработан на базе одной из иконок Python Turtle, а также потому что главный разработчик "ИС-4" любит черепашек! ❤ Первоначальное название проекта SSB:RR было Simple Sandbox: Reborn Turtle Edition, но концепция черепах переехала в наше объединение. Чтобы быть ближе к оригинальному проекту, разработчик Mister Sasha (Александр) предложил добавить вторую букву R, что означает «перезагрузка проекта», только качественно сделанная.</p>
+  <p id="p5">
+    Turtle Team представляет собой объединение из официально двух человек и неофициально тех, кто нам помогает. Наш логотип был разработан на базе одной из иконок Python Turtle, а также потому что главный разработчик "ИС-4" любит черепашек! ❤ Первоначальное название проекта SSB:RR было Simple Sandbox: Reborn Turtle Edition, но концепция черепах переехала в наше объединение. Чтобы быть ближе к оригинальному проекту, разработчик Mister Sasha (Александр) предложил добавить вторую букву R, что означает «перезагрузка проекта», только качественно сделанная.
+  </p>
   <p id="p6">Разработчики:</p>
   <p id="p7">Главный разраб и инициатор разработки - ИС-4</p>
   <p id="p8">Дизайнер и моральный двигатель и заместитель - Александр</p>
 </div>
 
 <script>
-// ==== Локализация ====
+// === Локализация ===
 const langBtn = document.getElementById("lang-toggle");
 let lang = localStorage.getItem("lang") || "ru";
 
@@ -118,11 +126,10 @@ const translations = {
 };
 
 function applyLanguage() {
-  for (const id in translations[lang]) {
-    if (id.startsWith("p") || id === "h1") {
-      const el = document.getElementById(id);
-      if (el) el.textContent = translations[lang][id];
-    }
+  document.getElementById("h1-title").textContent = translations[lang].h1;
+  for (let i=1; i<=8; i++) {
+    const el = document.getElementById("p"+i);
+    if(el) el.textContent = translations[lang]["p"+i];
   }
   const img = langBtn.querySelector("img");
   img.src = translations[lang].flag;
