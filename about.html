@@ -19,20 +19,22 @@
       margin: 0;
       position: relative;
     }
-    .lang-btn {
+
+    /* Кнопка флага */
+    .flag-btn {
       position: absolute;
       right: 15px;
       top: 15px;
-      background: #1E90FF;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 6px 10px;
-      font-size: 14px;
+      width: 42px;
+      height: 28px;
+      border: 2px solid white;
+      border-radius: 4px;
       cursor: pointer;
-      transition: background 0.3s;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.2s;
     }
-    .lang-btn:hover { background: #187bcd; }
+    .flag-btn:hover { transform: scale(1.1); }
 
     .container {
       width: 90%;
@@ -54,60 +56,64 @@
 
   <h1 data-lang="header">
     О проекте — Simple Sandbox: Reborn Reloaded и Turtle Games/Team
-    <button class="lang-btn" onclick="toggleLang()">EN</button>
+    <div class="flag-btn" id="langFlag"></div>
   </h1>
 
-  <div class="container" id="content">
-    <!-- Контент подставляется из JS -->
-  </div>
+  <div class="container" id="content"></div>
 
 <script>
-const content = {
-  ru: `
-    <p><b>Что такое SSB:RR?</b></p>
-    <p>
-      Simple Sandbox: Reborn Reloaded — это форк-продолжение Simple Sandbox: Reborn, который
-      разрабатывался с 17 сентября 2024 по 26 июня 2025 года, после чего был заброшен автором.
-      Мы взялись за дело 19 июля 2024 года и начали чинить всё подряд. Работа идёт полным ходом!
-    </p>
-    <p><b>О Turtle Games/Team:</b></p>
-    <p>
-      Turtle Team — это команда из двух официальных участников и нескольких помощников.
-      Логотип вдохновлён Python Turtle, а название связано с любовью к черепахам 🐢❤
-    </p>
-    <p><b>Разработчики:</b></p>
-    <p>Главный разработчик — ИС-4</p>
-    <p>Дизайнер и сооснователь — Александр</p>
-  `,
-  en: `
-    <p><b>What is SSB:RR?</b></p>
-    <p>
-      Simple Sandbox: Reborn Reloaded is a fork and continuation of Simple Sandbox: Reborn,
-      developed from September 17, 2024 to June 26, 2025, later abandoned by its author.
-      On July 19, 2024, we took over and started fixing everything. The project is alive and progressing!
-    </p>
-    <p><b>About Turtle Games/Team:</b></p>
-    <p>
-      Turtle Team consists of two main members and several helpers.
-      The logo was inspired by Python Turtle — and by our love for turtles 🐢❤
-    </p>
-    <p><b>Developers:</b></p>
-    <p>Main developer — IS-4</p>
-    <p>Designer & co-founder — Alexander</p>
-  `
+const texts = {
+  ru: {
+    title: "О проекте | SSB:RR",
+    header: "О проекте — Simple Sandbox: Reborn Reloaded и Turtle Games/Team",
+    content: `
+      <p><b>Что такое SSB:RR?</b></p>
+      <p>
+        Simple Sandbox: Reborn Reloaded — это форк-продолжение Simple Sandbox: Reborn, 
+        который разрабатывался с 17 сентября 2024 по 26 июня 2025 года, после чего был заброшен.
+        Мы взялись за проект 19 июля 2024 и начали исправлять всё подряд. Работа кипит!
+      </p>
+      <p><b>О Turtle Games/Team:</b></p>
+      <p>
+        Turtle Team — команда из двух официальных участников и нескольких помощников. 
+        Наш логотип вдохновлён Python Turtle, а также любовью к черепахам 🐢❤
+      </p>
+      <p><b>Разработчики:</b></p>
+      <p>Главный разработчик — ИС-4</p>
+      <p>Дизайнер и сооснователь — Александр</p>
+    `
+  },
+  en: {
+    title: "About | SSB:RR",
+    header: "About — Simple Sandbox: Reborn Reloaded & Turtle Games/Team",
+    content: `
+      <p><b>What is SSB:RR?</b></p>
+      <p>
+        Simple Sandbox: Reborn Reloaded is a fork-continuation of Simple Sandbox: Reborn,
+        developed from September 17, 2024 to June 26, 2025, and later abandoned.
+        We took over on July 19, 2024 and began fixing everything. The project is alive and growing!
+      </p>
+      <p><b>About Turtle Games/Team:</b></p>
+      <p>
+        Turtle Team is a group of two main members and several helpers.
+        Our logo was inspired by Python Turtle and our love for turtles 🐢❤
+      </p>
+      <p><b>Developers:</b></p>
+      <p>Main developer — IS-4</p>
+      <p>Designer & co-founder — Alexander</p>
+    `
+  }
 };
-
-function toggleLang() {
-  const lang = localStorage.getItem("lang") === "ru" ? "en" : "ru";
-  setLang(lang);
-}
 
 function setLang(lang) {
   localStorage.setItem("lang", lang);
   document.documentElement.lang = lang;
-  document.querySelector(".lang-btn").textContent = lang === "ru" ? "EN" : "RU";
-  document.querySelector("#content").innerHTML = content[lang];
-  document.title = lang === "ru" ? "О проекте | SSB:RR" : "About | SSB:RR";
+  document.title = texts[lang].title;
+  document.querySelector("[data-lang='header']").innerHTML = texts[lang].header + '<div class="flag-btn" id="langFlag"></div>';
+  document.getElementById("content").innerHTML = texts[lang].content;
+  const flag = document.getElementById("langFlag");
+  flag.style.backgroundImage = lang === "ru" ? "url('images/en_flag.png')" : "url('images/ru_flag.png')";
+  flag.onclick = () => setLang(lang === "ru" ? "en" : "ru");
 }
 
 setLang(localStorage.getItem("lang") || "ru");
