@@ -1,163 +1,275 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SSB:RR | Загрузка</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Скачать APK | SSB:RR</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
 
-    .hero {
-      background-color: DodgerBlue;
-      color: white;
-      padding: 30px 10px;
-      position: relative;
-    }
+/* Верхнее голубое поле */
+h1 {
+  text-align: center;
+  padding: 12px 8px;
+  background: DodgerBlue;
+  color: white;
+  margin: 0;
+  font-size: 1.3em;
+  word-wrap: break-word;
+}
 
-    h1 {
-      font-size: 2em;
-      margin: 0;
-    }
+/* Таблица */
+table {
+  width: 98%;
+  max-width: 600px;
+  margin: 12px auto;
+  border-collapse: collapse;
+  font-size: 13px;
+  flex: 1;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+}
+th, td { border: 1px solid #ddd; padding: 6px; text-align: center; }
+th { background: #222; color: white; }
+tr:hover { background: #f1f1f1; }
 
-    /* Кнопка локализации */
-    .lang-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+.icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
 
-    .lang-btn img {
-      width: 74px;
-      height: 74px;
-      object-fit: cover;
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-    }
+.download-btn {
+  padding: 5px 0;
+  background: DodgerBlue;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.download-btn:hover { background: RoyalBlue; }
 
-    .lang-btn img:hover {
-      transform: scale(1.05);
-    }
+/* Текст перед кнопкой */
+.drive-text {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
 
-    .content {
-      padding: 40px 20px;
-    }
+/* Кнопка Google Drive */
+.drive-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 320px;
+  margin: 10px auto 25px;
+  background: #1E90FF;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  transition: background 0.3s, transform 0.2s;
+}
+.drive-btn:hover {
+  background: #187bcd;
+  transform: translateY(-1px);
+}
+.drive-btn img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
 
-    .drive-section {
-      margin-top: 50px;
-    }
+/* Мобильная адаптация */
+@media (max-width: 600px) {
+  table, thead, tbody, th, td, tr { display: block; width: 100%; }
+  thead { display: none; }
+  tr {
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px;
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0,0,0,0.1);
+    word-wrap: break-word;
+  }
+  td {
+    border: none;
+    padding: 4px 6px;
+    text-align: left;
+    position: relative;
+  }
+  td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: inline-block;
+    width: 85px;
+    vertical-align: top;
+  }
+  .icon { width: 16px; height: 16px; vertical-align: middle; }
+  .download-btn { padding: 4px 0; font-size: 12px; }
+  .drive-btn {
+    width: 90%;
+    font-size: 14px;
+    gap: 8px;
+  }
+  .drive-btn img {
+    width: 28px;
+    height: 28px;
+  }
+}
 
-    .drive-section h2 {
-      margin-bottom: 20px;
-      font-size: 1.5em;
-    }
-
-    .drive-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background-color: #4285F4; /* голубой Google */
-      color: white;
-      padding: 16px 28px;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .drive-btn:hover {
-      background-color: #2a65d7;
-      transform: scale(1.03);
-    }
-
-    .drive-btn img {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
-    }
-
-    /* Адаптация под мобильные */
-    @media (max-width: 600px) {
-      h1 { font-size: 1.6em; }
-      .drive-btn { font-size: 16px; padding: 12px 20px; }
-      .drive-btn img { width: 40px; height: 40px; }
-      .lang-btn img { width: 64px; height: 64px; }
-    }
-  </style>
+/* Флаг локализации */
+.lang-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.lang-btn img {
+  width: 74px;
+  height: 74px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+.lang-btn img:hover { transform: scale(1.05); }
+</style>
 </head>
 <body>
 
-  <div class="hero">
-    <button class="lang-btn" id="lang-toggle">
-      <img src="images/flag_ru.png" alt="Русский">
-    </button>
-    <h1 id="title">Загрузка Simple Sandbox:Reborn Reloaded</h1>
-  </div>
+<button class="lang-btn" id="lang-toggle">
+  <img src="images/flag_ru.png" alt="Русский">
+</button>
 
-  <div class="content">
-    <div class="drive-section">
-      <h2 id="drive-text">Не нашли старые версии?</h2>
-      <a href="https://drive.google.com/drive/folders/ВАША_ССЫЛКА" target="_blank" class="drive-btn">
-        <img src="images/google_drive.png" alt="Google Drive">
-        <span id="drive-btn-text">Скачать старые версии из Google Drive</span>
-      </a>
-    </div>
-  </div>
+<h1>Скачать — Simple Sandbox: Reborn Reloaded</h1>
 
-  <script>
-    // === Загрузка сохранённого языка с главной страницы ===
-    let lang = localStorage.getItem("lang") || "ru";
+<table>
+  <thead>
+    <tr>
+      <th>Файл</th>
+      <th>Дата загрузки</th>
+      <th>Платформа</th>
+      <th>Скачать</th>
+    </tr>
+  </thead>
+  <tbody id="apk-list"></tbody>
+</table>
 
-    const text = {
-      ru: {
-        title: "Загрузка Simple Sandbox:Reborn Reloaded",
-        driveText: "Не нашли старые версии?",
-        driveBtn: "Скачать старые версии из Google Drive",
-        flag: "images/flag_ru.png",
-        alt: "Русский"
-      },
-      en: {
-        title: "Download Simple Sandbox:Reborn Reloaded",
-        driveText: "Can't find old versions?",
-        driveBtn: "Download old versions from Google Drive",
-        flag: "images/flag_us.png",
-        alt: "English"
-      }
-    };
+<div class="drive-text">Не нашли старые версии?</div>
+<a href="https://drive.google.com/drive/folders/ВАША_ССЫЛКА" target="_blank" class="drive-btn">
+  <img src="images/drive.png" alt="Drive">
+  <span>Скачать старые версии из Google Drive</span>
+</a>
 
-    const langBtn = document.getElementById("lang-toggle");
+<script>
+const repoOwner = "TurtleTeamSSBRR";
+const repoName = "TurtleTeamSSBRR.github.io";
 
-    function applyLanguage() {
-      document.getElementById("title").textContent = text[lang].title;
-      document.getElementById("drive-text").textContent = text[lang].driveText;
-      document.getElementById("drive-btn-text").textContent = text[lang].driveBtn;
-      langBtn.querySelector("img").src = text[lang].flag;
-      langBtn.querySelector("img").alt = text[lang].alt;
-      localStorage.setItem("lang", lang); // сохраняем язык
-    }
+async function fetchReleases() {
+  const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/releases`;
+  try {
+    const response = await fetch(apiURL);
+    if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
+    const releases = await response.json();
 
-    langBtn.addEventListener("click", () => {
-      lang = lang === "ru" ? "en" : "ru";
-      applyLanguage();
+    const tbody = document.getElementById("apk-list");
+    tbody.innerHTML = "";
+
+    releases.forEach(release => {
+      release.assets.forEach(asset => {
+        const fileName = asset.name.toLowerCase();
+        const date = new Date(asset.updated_at).toLocaleDateString("ru-RU", {
+          day: "numeric", month: "long", year: "numeric"
+        });
+
+        // Определяем иконку
+        let iconSrc = "images/unknown.png";
+        if (fileName.endsWith(".apk")) iconSrc = "images/android.png";
+        else if (fileName.endsWith(".zip")) iconSrc = "images/windows.png";
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td data-label="Файл">${asset.name}</td>
+          <td data-label="Дата загрузки">${date}</td>
+          <td data-label="Платформа"><img src="${iconSrc}" alt="Платформа" class="icon"></td>
+          <td data-label="Скачать"><a href="${asset.browser_download_url}" class="download-btn">Скачать</a></td>
+        `;
+        tbody.appendChild(tr);
+      });
     });
 
-    // при загрузке применяем сохранённый язык
-    applyLanguage();
-  </script>
+    if (tbody.innerHTML === "") {
+      tbody.innerHTML = `<tr><td colspan="4">Файлы не найдены</td></tr>`;
+    }
+
+  } catch (error) {
+    document.getElementById("apk-list").innerHTML = `<tr><td colspan="4">Ошибка загрузки: ${error.message}</td></tr>`;
+  }
+}
+
+fetchReleases();
+
+// === Локализация ===
+let lang = localStorage.getItem("lang") || "ru";
+const langBtn = document.getElementById("lang-toggle");
+
+const text = {
+  ru: {
+    h1: "Скачать — Simple Sandbox: Reborn Reloaded",
+    driveText: "Не нашли старые версии?",
+    driveBtn: "Скачать старые версии из Google Drive",
+    flag: "images/flag_ru.png",
+    alt: "Русский"
+  },
+  en: {
+    h1: "Download — Simple Sandbox: Reborn Reloaded",
+    driveText: "Can't find old versions?",
+    driveBtn: "Download old versions from Google Drive",
+    flag: "images/flag_us.png",
+    alt: "English"
+  }
+};
+
+function applyLanguage() {
+  document.querySelector("h1").textContent = text[lang].h1;
+  document.querySelector(".drive-text").textContent = text[lang].driveText;
+  const btnSpan = document.querySelector(".drive-btn span");
+  btnSpan.textContent = text[lang].driveBtn;
+  const img = langBtn.querySelector("img");
+  img.src = text[lang].flag;
+  img.alt = text[lang].alt;
+  localStorage.setItem("lang", lang);
+}
+
+langBtn.addEventListener("click", () => {
+  lang = lang === "ru" ? "en" : "ru";
+  applyLanguage();
+});
+
+applyLanguage();
+</script>
 
 </body>
 </html>
