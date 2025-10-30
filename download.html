@@ -19,16 +19,17 @@ body {
 /* Верхнее голубое поле — панель */
 h1 {
   text-align: center;
-  padding: 12px 80px 12px 8px; /* справа оставляем место для флага */
+  padding: 12px 60px 12px 12px; /* справа оставлено место для флага */
   background: DodgerBlue;
   color: white;
   margin: 0;
   font-size: 1.3em;
   position: relative;
   box-sizing: border-box;
+  line-height: 40px; /* выравнивание с флагом по вертикали */
 }
 
-/* Флаг локализации — внутри панели */
+/* Флаг локализации — внутри панели, не выходит за её пределы */
 .lang-btn {
   position: absolute;
   top: 50%;
@@ -45,8 +46,8 @@ h1 {
   z-index: 10;
 }
 .lang-btn img {
-  width: 40px;   /* уменьшенный размер */
-  height: 40px;
+  width: 36px;   /* уменьшенный размер для аккуратного вписывания */
+  height: 36px;
   object-fit: cover;
   border-radius: 4px;
   transition: transform 0.3s;
@@ -155,8 +156,8 @@ tr:hover { background: #f1f1f1; }
   .download-btn { padding: 4px 0; font-size: 12px; }
   .drive-btn { width: 90%; font-size: 14px; gap: 8px; }
   .drive-btn img { width: 28px; height: 28px; }
-  h1 { padding: 12px 60px 12px 8px; font-size: 1.1em; } /* панель с флагом адаптирована */
-  .lang-btn img { width: 32px; height: 32px; }
+  h1 { padding: 12px 50px 12px 12px; font-size: 1.1em; line-height: 32px; }
+  .lang-btn img { width: 28px; height: 28px; }
 }
 </style>
 </head>
