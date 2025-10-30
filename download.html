@@ -21,7 +21,7 @@ body {
   background: DodgerBlue;
   color: white;
   text-align: center;
-  padding: 12px 12px;
+  padding: 12px 50px 12px 12px; /* справа место под флаг */
   font-size: 1.3em;
   line-height: 40px;
   box-sizing: border-box;
@@ -50,9 +50,7 @@ body {
   border-radius: 4px;
   transition: transform 0.3s;
 }
-.lang-btn img:hover {
-  transform: scale(1.1);
-}
+.lang-btn img:hover { transform: scale(1.1); }
 
 /* Таблица */
 table {
@@ -152,7 +150,11 @@ tr:hover { background: #f1f1f1; }
   .download-btn { padding: 4px 0; font-size: 12px; }
   .drive-btn { width: 90%; font-size: 14px; gap: 8px; }
   .drive-btn img { width: 28px; height: 28px; }
-  .header { font-size: 1.1em; line-height: 32px; padding: 12px 12px; }
+  .header {
+    font-size: 1.1em;
+    line-height: 36px;
+    padding: 12px 60px 12px 12px; /* больше места справа под флаг */
+  }
   .lang-btn img { width: 28px; height: 28px; }
 }
 </style>
@@ -179,7 +181,7 @@ tr:hover { background: #f1f1f1; }
 </table>
 
 <div class="drive-text">Не нашли старые версии?</div>
-<a href="https://drive.google.com/drive/folders/1vKNeh_uiTHlb0bRFElCNrWtdJy6Spxtp?usp=drive_link" target="_blank" class="drive-btn">
+<a href="https://drive.google.com/drive/folders/ВАША_ССЫЛКА" target="_blank" class="drive-btn">
   <img src="images/drive.png" alt="Drive">
   <span>Скачать старые версии из Google Drive</span>
 </a>
@@ -272,4 +274,3 @@ applyLanguage();
 
 </body>
 </html>
-
