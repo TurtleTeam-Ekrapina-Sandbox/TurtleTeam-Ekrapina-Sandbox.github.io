@@ -80,9 +80,9 @@ h1 {
 </div>
 
 <script>
-// === Локализация ===
-let lang = localStorage.getItem("lang") || "ru";
+// === Локализация без изменения текста ===
 const langBtn = document.getElementById("lang-toggle");
+let lang = localStorage.getItem("lang") || "ru";
 
 const text = {
   ru: { flag: "images/flag_ru.png", alt: "Русский" },
