@@ -16,10 +16,10 @@ body {
   position: relative;
 }
 
-/* Верхнее голубое поле */
+/* Верхнее голубое поле — панель */
 h1 {
   text-align: center;
-  padding: 12px 8px;
+  padding: 12px 80px 12px 8px; /* справа оставляем место для флага */
   background: DodgerBlue;
   color: white;
   margin: 0;
@@ -28,28 +28,32 @@ h1 {
   box-sizing: border-box;
 }
 
-/* Флаг локализации — в пределах панели */
+/* Флаг локализации — внутри панели */
 .lang-btn {
   position: absolute;
-  top: 6px;
-  right: 6px;
-  background: rgba(255,255,255,0.1);
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
   border: 1px solid white;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 2px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
 .lang-btn img {
-  width: 64px;   /* уменьшил, чтобы не выходил за панель */
-  height: 64px;
+  width: 40px;   /* уменьшенный размер */
+  height: 40px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 4px;
   transition: transform 0.3s;
 }
-.lang-btn img:hover { transform: scale(1.05); }
+.lang-btn img:hover {
+  transform: scale(1.1);
+}
 
 /* Таблица */
 table {
@@ -151,6 +155,8 @@ tr:hover { background: #f1f1f1; }
   .download-btn { padding: 4px 0; font-size: 12px; }
   .drive-btn { width: 90%; font-size: 14px; gap: 8px; }
   .drive-btn img { width: 28px; height: 28px; }
+  h1 { padding: 12px 60px 12px 8px; font-size: 1.1em; } /* панель с флагом адаптирована */
+  .lang-btn img { width: 32px; height: 32px; }
 }
 </style>
 </head>
