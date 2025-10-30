@@ -34,12 +34,19 @@ table {
   border-collapse: collapse;
   font-size: 13px;
   flex: 1;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
 }
 th, td { border: 1px solid #ddd; padding: 6px; text-align: center; }
 th { background: #222; color: white; }
 tr:hover { background: #f1f1f1; }
 
-.icon { width: 20px; height: 20px; }
+.icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
 
 .download-btn {
   padding: 5px 0;
@@ -53,21 +60,41 @@ tr:hover { background: #f1f1f1; }
 }
 .download-btn:hover { background: RoyalBlue; }
 
+/* Текст перед кнопкой */
+.drive-text {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
 /* Кнопка Google Drive */
 .drive-btn {
-  display: block;
-  width: 220px;
-  margin: 20px auto;
-  background: #34A853;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 280px;
+  margin: 10px auto 25px;
+  background: #1E90FF;
   color: white;
   text-decoration: none;
   text-align: center;
   padding: 10px 0;
   border-radius: 6px;
   font-weight: bold;
-  transition: background 0.3s;
+  font-size: 14px;
+  transition: background 0.3s, transform 0.2s;
 }
-.drive-btn:hover { background: #2C8C45; }
+.drive-btn:hover {
+  background: #187bcd;
+  transform: translateY(-1px);
+}
+.drive-btn img {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
 
 /* Мобильная адаптация — карточки */
 @media (max-width: 600px) {
@@ -116,9 +143,11 @@ tr:hover { background: #f1f1f1; }
   <tbody id="apk-list"></tbody>
 </table>
 
-<!-- Кнопка для Google Drive -->
+<!-- Текст и кнопка Google Drive -->
+<div class="drive-text">Не нашли старые версии?</div>
 <a href="https://drive.google.com/drive/folders/ВАША_ССЫЛКА" target="_blank" class="drive-btn">
-  📦 Открыть Google Drive
+  <img src="images/drive.png" alt="Drive">
+  Скачать старые версии из Google Drive
 </a>
 
 <script>
@@ -151,7 +180,7 @@ async function fetchReleases() {
         tr.innerHTML = `
           <td data-label="Файл">${asset.name}</td>
           <td data-label="Дата загрузки">${date}</td>
-          <td data-label="Платформа"><img src="${iconSrc}" alt="icon" class="icon"></td>
+          <td data-label="Платформа"><img src="${iconSrc}" alt="Платформа" class="icon"></td>
           <td data-label="Скачать"><a href="${asset.browser_download_url}" class="download-btn">Скачать</a></td>
         `;
         tbody.appendChild(tr);
