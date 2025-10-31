@@ -16,41 +16,45 @@ body {
 /* Верхняя чёрная панель */
 h1 {
   text-align: center;
-  padding: 20px 80px 20px 20px; /* справа место под флаг */
+  padding: 16px 80px 16px 20px; /* справа место под флаг */
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
   margin: 0;
-  position: relative; /* для флага */
+  position: relative; /* для позиционирования флага */
+  line-height: 64px;
+  font-size: 1.8em;
   box-sizing: border-box;
-  line-height: 64px; /* выравниваем текст по центру с флагом */
 }
 
-/* Флаг локализации */
+/* Флаг на панели */
 .lang-btn {
   position: absolute;
   top: 50%;
-  right: 10px;
+  right: 14px;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.1);
-  border: 1px solid white;
-  border-radius: 8px;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid white;
+  border-radius: 10px;
   padding: 2px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
+  transition: background 0.3s;
+}
+.lang-btn:hover {
+  background: rgba(255,255,255,0.25);
 }
 .lang-btn img {
-  width: 60px;   /* уменьшенный размер для аккуратного вписывания */
+  width: 60px;
   height: 60px;
   object-fit: cover;
   border-radius: 6px;
-  transition: transform 0.3s;
+  border: 2px solid white;
+  transition: transform 0.3s ease;
 }
-.lang-btn img:hover {
-  transform: scale(1.05);
-}
+.lang-btn img:hover { transform: scale(1.05); }
 
 /* Контейнер текста */
 .container {
@@ -59,26 +63,45 @@ h1 {
   margin: 40px auto;
   padding: 20px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0,0,0,0.25);
   line-height: 1.6;
   border: 2px solid #ddd;
+  border-radius: 12px;
 }
 
-/* Мобильная адаптация */
+/* Адаптация под Android / мобильные */
 @media (max-width: 600px) {
-  .container { padding: 15px; margin: 20px auto; }
-  h1 { font-size: 1.5em; padding: 15px 70px 15px 15px; line-height: 50px; }
-  .lang-btn img { width: 50px; height: 50px; }
+  h1 {
+    font-size: 1.4em;
+    padding: 14px 70px 14px 12px;
+    line-height: 50px;
+  }
+  .lang-btn img {
+    width: 48px;
+    height: 48px;
+    border: 2px solid white;
+  }
+  .lang-btn {
+    right: 10px;
+    border-radius: 8px;
+    border: 1.5px solid white;
+  }
+  .container {
+    padding: 15px;
+    margin: 20px auto;
+    font-size: 0.95em;
+  }
 }
 </style>
 </head>
 <body>
 
-<button class="lang-btn" id="lang-toggle">
-  <img src="images/flag_ru.png" alt="Русский">
-</button>
-
-<h1 id="h1-title">О проекте — Simple Sandbox: Reborn Reloaded и Turtle Games/Team</h1>
+<h1 id="h1-title">
+  О проекте — Simple Sandbox: Reborn Reloaded и Turtle Games/Team
+  <button class="lang-btn" id="lang-toggle">
+    <img src="images/flag_ru.png" alt="Русский">
+  </button>
+</h1>
 
 <div class="container">
   <p id="p1">Что такое SSB:RR?</p>
@@ -132,7 +155,7 @@ const translations = {
 };
 
 function applyLanguage() {
-  document.getElementById("h1-title").textContent = translations[lang].h1;
+  document.getElementById("h1-title").childNodes[0].textContent = translations[lang].h1 + " ";
   for (let i=1; i<=8; i++) {
     const el = document.getElementById("p"+i);
     if(el) el.textContent = translations[lang]["p"+i];
