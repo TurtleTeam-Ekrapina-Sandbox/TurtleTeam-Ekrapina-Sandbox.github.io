@@ -1,6 +1,6 @@
 <script>
-const repoOwner = window.location.hostname.split('.')[0];
-const repoName = `${repoOwner}.github.io`;
+const repoOwner = "TurtleTeam-Ekrapina-Sandbox";
+const repoName = "TurtleTeam-Ekrapina-Sandbox.github.io";
 
 async function fetchReleases() {
   const apiURL = `https://api.github.com/repos/${repoOwner}/${repoName}/releases`;
@@ -39,7 +39,8 @@ async function fetchReleases() {
     }
 
   } catch (error) {
-    document.getElementById("apk-list").innerHTML = `<tr><td colspan="4">Ошибка загрузки: ${error.message}</td></tr>`;
+    document.getElementById("apk-list").innerHTML =
+      `<tr><td colspan="4">Ошибка загрузки: ${error.message}</td></tr>`;
   }
 }
 
