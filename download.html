@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Скачать APK | ESB</title>
+<title>Download APK | ESB</title>
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -171,10 +171,10 @@ tr:hover { background: #f1f1f1; }
 <table>
   <thead>
     <tr>
-      <th>Файл</th>
-      <th>Дата загрузки</th>
-      <th>Платформа</th>
-      <th>Скачать</th>
+      <th>File</th>
+      <th>Upload date</th>
+      <th>Platform</th>
+      <th>Download</th>
     </tr>
   </thead>
   <tbody id="apk-list"></tbody>
@@ -216,7 +216,7 @@ async function fetchReleases() {
           <td data-label="File">${asset.name}</td>
           <td data-label="Upload date">${date}</td>
           <td data-label="Platform"><img src="${iconSrc}" alt="Платформа" class="icon"></td>
-          <td data-label="Download"><a href="${asset.browser_download_url}" class="download-btn">Скачать</a></td>
+          <td data-label="Download"><a href="${asset.browser_download_url}" class="download-btn">Download</a></td>
         `;
         tbody.appendChild(tr);
       });
@@ -275,4 +275,5 @@ applyLanguage();
 
 </body>
 </html>
+
 
